@@ -11,26 +11,26 @@ _VERSION_RE = re.compile(r"__version__\s*?=\s*?'(.*?)'", flags=re.M)
 
 def get_version():
     path = os.path.join(
-        os.path.dirname(os.path.abspath(__file__)), 'pangu.py')
+        os.path.dirname(os.path.abspath(__file__)), 'pangu2.py')
     with open(path) as f:
         return _VERSION_RE.findall(f.read())[-1]
 
 
 setup(
-    name='pangu',
+    name='pangu2',
     version=get_version(),
     description='Paranoid text spacing for good readability, to automatically insert whitespace between CJK (Chinese, Japanese, Korean) and half-width characters (alphabetical letters, numerical digits and symbols).',
     long_description=open('README.rst').read() + '\n' + open('HISTORY.rst').read(),
-    keywords='pangu text-spacing spacing text typesetting readability chinese japanese korean obsessive-compulsive-disorder ocd paranoia',
+    keywords='pangu2 text-spacing spacing text typesetting readability chinese japanese korean obsessive-compulsive-disorder ocd paranoia',
     author='Vinta Chen',
     author_email='vinta.chen@gmail.com',
-    url='https://github.com/vinta/pangu.py',
+    url='https://github.com/vinta/pangu2.py',
     license='MIT',
     include_package_data=True,
-    py_modules=['pangu'],
-    test_suite='test_pangu',
+    py_modules=['pangu2'],
+    test_suite='test_pangu2',
     entry_points={
-        'console_scripts': ['pangu=pangu:cli'],
+        'console_scripts': ['pangu2=pangu2:cli'],
     },
     zip_safe=False,
     classifiers=(

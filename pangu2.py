@@ -3,11 +3,11 @@
 """
 Paranoid text spacing for good readability, to automatically insert whitespace between CJK (Chinese, Japanese, Korean) and half-width characters (alphabetical letters, numerical digits and symbols).
 
->>> import pangu
->>> nwe_text = pangu.spacing_text('當你凝視著bug，bug也凝視著你')
+>>> import pangu2
+>>> nwe_text = pangu2.spacing_text('當你凝視著bug，bug也凝視著你')
 >>> print(nwe_text)
 '當你凝視著 bug，bug 也凝視著你'
->>> nwe_content = pangu.spacing_file('path/to/file.txt')
+>>> nwe_content = pangu2.spacing_file('path/to/file.txt')
 >>> print(nwe_content)
 '與 PM 戰鬥的人，應當小心自己不要成為 PM'
 """
@@ -17,7 +17,7 @@ import os
 import re
 import sys
 
-__version__ = '4.0.6.1'
+__version__ = '5.0'
 __all__ = ['spacing_text', 'spacing_file', 'spacing', 'cli']
 
 CJK = r'\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30fa\u30fc-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff'
@@ -133,7 +133,7 @@ def spacing(text):
     new_text = ANS_CJK_LEFT_BRACKET_ANY_RIGHT_BRACKET.sub(r'\1 \2\3\4', new_text)
     new_text = LEFT_BRACKET_ANY_RIGHT_BRACKET_ANS_CJK.sub(r'\1\2\3 \4', new_text)
 
-    new_text = AN_LEFT_BRACKET.sub(r'\1 \2', new_text)
+    # new_text = AN_LEFT_BRACKET.sub(r'\1 \2', new_text)
     new_text = RIGHT_BRACKET_AN.sub(r'\1 \2', new_text)
 
     new_text = CJK_ANS.sub(r'\1 \2', new_text)
@@ -167,8 +167,8 @@ def cli(args=None):
         args = sys.argv[1:]
 
     parser = argparse.ArgumentParser(
-        prog='pangu',
-        description='pangu.py -- Paranoid text spacing for good readability, to automatically insert whitespace between CJK and half-width characters (alphabetical letters, numerical digits and symbols).',
+        prog='pangu2',
+        description='pangu2.py -- Paranoid text spacing for good readability, to automatically insert whitespace between CJK and half-width characters (alphabetical letters, numerical digits and symbols).',
     )
     parser.add_argument('-v', '--version', action='version', version=__version__)
     parser.add_argument('-t', '--text', action='store_true', dest='is_text', required=False, help='specify the input value is a text')
